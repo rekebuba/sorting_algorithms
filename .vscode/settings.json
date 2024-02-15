@@ -1,5 +1,10 @@
 {
     "cSpell.words": [
+        "bitonic",
+        "hoare",
         "listint"
-    ]
+    ],
+    "files.associations": {
+        "sort.h": "c"
+    }
 }
