@@ -37,5 +37,6 @@ void bitonic_sort(int *array, size_t size);
 void quick_sort_hoare(int *array, size_t size);
 
 void swap(int *a, int *b);
+void swap_list(listint_t **list, listint_t *a, listint_t *b);
 
 #endif

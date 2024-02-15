@@ -1,56 +1,59 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "sort.h"
 
 /**
- * create_listint - Creates a doubly linked list from an array of integers
+ * insertion_sort_list - sorts a doubly linked list of integers in ascending order
+ * using the insertion sort algorithm
  *
- * @array: Array to convert to a doubly linked list
- * @size: Size of the array
- *
- * Return: Pointer to the first element of the created list. NULL on failure
+ * @list: head pointer to a doubly linked list
+ * Return: Void
  */
-listint_t *create_listint(const int *array, size_t size)
+void insertion_sort_list(listint_t **list)
 {
-    listint_t *list;
-    listint_t *node;
-    int *tmp;
-
-    list = NULL;
-    while (size--)
-    {
-        node = malloc(sizeof(*node));
-        if (!node)
-            return (NULL);
-        tmp = (int *)&node->n;
-        *tmp = array[size];
-        node->next = list;
-        node->prev = NULL;
-        list = node;
-        if (list->next)
-            list->next->prev = list;
-    }
-    return (list);
+	listint_t *temp = (*list)->next;
+	if (*list == NULL || temp == NULL)
+		return;
+	while (temp != NULL)
+	{
+		listint_t *ptr = temp;
+		while (ptr->prev != NULL && ptr->n < ptr->prev->n)
+		{
+			swap_list(list, ptr->prev, ptr);
+			print_list(*list);
+			if (ptr->prev != NULL)
+				ptr = ptr->prev->next;
+		}
+		temp = temp->next;
+	}
 }
 
 /**
- * main - Entry point
+ * swap_list - swap the node themselves
  *
- * Return: Always 0
+ * @a: pointer to the first node
+ * @b: pointer to the second node
+ * Return: Void
  */
-int main(void)
+void swap_list(listint_t **list, listint_t *a, listint_t *b)
 {
-    listint_t *list;
-    int array[] = {19, 48, 99, 71, 13, 52, 96, 73, 86, 7};
-    size_t n = sizeof(array) / sizeof(array[0]);
+	listint_t *ptr;
 
-    list = create_listint(array, n);
-    if (!list)
-        return (1);
-    print_list(list);
-    printf("\n");
-    insertion_sort_list(&list);
-    printf("\n");
-    print_list(list);
-    return (0);
+	if (a == NULL || b == NULL)
+		return;
+
+	if (a->prev != NULL)
+	{
+		a->prev->next = b;
+		b->prev = a->prev;
+	}
+	else
+	{
+		*list = b;
+	}
+	ptr = b->next;
+	b->next = a;
+	b->prev = a->prev;
+	a->next = ptr;
+	a->prev = b;
+	if (ptr != NULL)
+		ptr->prev = a;
 }
