@@ -1,2 +1,1 @@
-
- *
+pivot_index

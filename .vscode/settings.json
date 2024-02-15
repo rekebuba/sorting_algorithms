@@ -5,6 +5,9 @@
         "listint"
     ],
     "files.associations": {
-        "sort.h": "c"
+        "sort.h": "c",
+        "array": "c",
+        "string_view": "c",
+        "initializer_list": "c"
     }
 }

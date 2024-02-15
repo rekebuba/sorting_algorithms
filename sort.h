@@ -38,5 +38,7 @@ void quick_sort_hoare(int *array, size_t size);
 
 void swap(int *a, int *b);
 void swap_list(listint_t **list, listint_t *a, listint_t *b);
+int find_pivot(int *array, size_t size, int low, int hig);
+void recursion(int *array, size_t size, int low, int hig);
 
 #endif
