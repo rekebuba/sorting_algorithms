@@ -1,1 +1,2 @@
-pivot_index
+
+ * Return: the index of the pivot
