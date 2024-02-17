@@ -43,7 +43,6 @@ void swap_list(listint_t **list, listint_t *a, listint_t *b)
 	if (a->prev != NULL)
 	{
 		a->prev->next = b;
-		b->prev = a->prev;
 	}
 	else
 	{
