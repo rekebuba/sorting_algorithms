@@ -40,5 +40,6 @@ void swap(int *a, int *b);
 void swap_list(listint_t **list, listint_t *a, listint_t *b);
 int find_pivot(int *array, size_t size, int low, int hig);
 void recursion(int *array, size_t size, int low, int hig);
+int max_num(int *array, size_t size);
 
 #endif
