@@ -41,5 +41,8 @@ void swap_list(listint_t **list, listint_t *a, listint_t *b);
 int find_pivot(int *array, size_t size, int low, int hig);
 void recursion(int *array, size_t size, int low, int hig);
 int max_num(int *array, size_t size);
+void divide_list(int *array, size_t lower, size_t upper);
+void merge_list(int *array, size_t lower, size_t mid, size_t upper);
+
 
 #endif
