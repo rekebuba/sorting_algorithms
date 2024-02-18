@@ -1,10 +1,13 @@
 #ifndef SORTING_ALGORITHMS
 #define SORTING_ALGORITHMS
 
+
+#define HEAP_SIZE 10
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
-
+#include <string.h>
 
 /**
  * struct listint_s - Doubly linked list node
@@ -43,6 +46,8 @@ void recursion(int *array, size_t size, int low, int hig);
 int max_num(int *array, size_t size);
 void divide_list(int *array, size_t lower, size_t upper);
 void merge_list(int *array, size_t lower, size_t mid, size_t upper);
-
+void radix_unpack(int *array, size_t size, int **buffer);
+void free_mem(int **buffer);
+int **allocate_mem(size_t size);
 
 #endif
