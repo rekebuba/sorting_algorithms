@@ -1,6 +1,10 @@
 #ifndef SORTING_ALGORITHM2
 #define SORTING_ALGORITHM2
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
 typedef enum kind_e
 {
     SPADE = 0,
@@ -36,4 +40,9 @@ typedef struct deck_node_s
     struct deck_node_s *next;
 } deck_node_t;
 
+
+void sort_deck(deck_node_t **deck);
+void swap_deck(deck_node_t **deck, deck_node_t *a, deck_node_t *b);
+void check_word(deck_node_t **deck, deck_node_t *curent, deck_node_t *next);
+void cocktail_sort_deck(deck_node_t **deck);
 #endif
