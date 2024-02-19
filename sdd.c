@@ -110,48 +110,44 @@ int main(void)
 
 void sort_deck(deck_node_t **deck)
 {
-    deck_node_t *left = *deck, *right = *deck, *curent;
+    deck_node_t *ptr = *deck, *curent;
 
-    while (right->next != NULL)
-        right = right->next;
-
-    while (left != right->prev && right != left)
+    int swapped;
+    do
     {
-        for (curent = left; curent->next && curent != right; curent = curent->next)
+        swapped = 0;
+        for (curent = *deck; curent->next; curent = curent->next)
         {
-            if (check_word(deck, curent, curent->next, 0))
+            if (check_word(deck, curent, curent->next))
             {
+                // print_deck(*deck);
+                // printf("\n___________\n");
                 curent = curent->prev;
+                swapped = 1;
             }
-            else if (atoi(curent->card->value) > atoi(curent->next->card->value))
+            else if (atoi(curent->card->value) > atoi(curent->next->card->value) && atoi(curent->next->card->value) != 0)
+            {
+                swap_deck(deck, curent, curent->next);
+                // print_deck(*deck);
+                // printf("\n___________\n");
+                curent = curent->prev;
+                swapped = 1;
+            }
+        }
+    } while (swapped);
+    do
+    {
+        swapped = 0;
+        for (curent = *deck; curent->next; curent = curent->next)
+        {
+            if (curent->card->kind > curent->next->card->kind)
             {
                 swap_deck(deck, curent, curent->next);
                 curent = curent->prev;
+                swapped = 1;
             }
-            if (curent == right)
-                right = right->next;
-            if (left->prev == curent)
-                left = left->prev;
         }
-
-        for (curent = curent->prev; curent->prev && curent != left; curent = curent->prev)
-        {
-            if (check_word(deck, curent->prev, curent, 1))
-            {
-                curent = curent->next;
-            }
-            else if (atoi(curent->prev->card->value) > atoi(curent->card->value))
-            {
-                swap_deck(deck, curent->prev, curent);
-                curent = curent->next;
-            }
-            if (curent == left)
-                left = left->prev;
-        }
-
-        left = curent->next;
-        right = right->prev;
-    }
+    } while (swapped);
 }
 
 /**
@@ -162,7 +158,7 @@ void sort_deck(deck_node_t **deck)
  * Return: Void
  */
 
-bool check_word(deck_node_t **deck, deck_node_t *curent, deck_node_t *next, int flag)
+bool check_word(deck_node_t **deck, deck_node_t *curent, deck_node_t *next)
 {
     int words['Q' + 1] = {
         ['A'] = 1,
@@ -177,8 +173,8 @@ bool check_word(deck_node_t **deck, deck_node_t *curent, deck_node_t *next, int 
         if (words[curent->card->value[0]] > words[(next->card->value[0])])
         {
             swap_deck(deck, curent, next);
-            print_deck(*deck);
-            printf("\n___________\n");
+            // print_deck(*deck);
+            // printf("\n___________\n");
             result = true;
         }
     }
@@ -187,15 +183,8 @@ bool check_word(deck_node_t **deck, deck_node_t *curent, deck_node_t *next, int 
         if (words[curent->card->value[0]] > atoi(next->card->value))
         {
             swap_deck(deck, curent, next);
-            print_deck(*deck);
-            printf("\n___________\n");
-            result = true;
-        }
-        else if (flag && words[curent->card->value[0]] < atoi(next->card->value))
-        {
-            swap_deck(deck, curent, next);
-            print_deck(*deck);
-            printf("\n___________\n");
+            // print_deck(*deck);
+            // printf("\n___________\n");
             result = true;
         }
     }
@@ -204,15 +193,8 @@ bool check_word(deck_node_t **deck, deck_node_t *curent, deck_node_t *next, int 
         if (words[next->card->value[0]] < atoi(curent->card->value))
         {
             swap_deck(deck, curent, next);
-            print_deck(*deck);
-            printf("\n___________\n");
-            result = true;
-        }
-        else if (flag && words[next->card->value[0]] > atoi(curent->card->value))
-        {
-            swap_deck(deck, curent, next);
-            print_deck(*deck);
-            printf("\n___________\n");
+            // print_deck(*deck);
+            // printf("\n___________\n");
             result = true;
         }
     }

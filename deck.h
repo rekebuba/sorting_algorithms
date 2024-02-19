@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 
 typedef enum kind_e
 {
@@ -43,6 +44,7 @@ typedef struct deck_node_s
 
 void sort_deck(deck_node_t **deck);
 void swap_deck(deck_node_t **deck, deck_node_t *a, deck_node_t *b);
-void check_word(deck_node_t **deck, deck_node_t *curent, deck_node_t *next);
+bool check_word(deck_node_t **deck, deck_node_t *curent, deck_node_t *next);
 void cocktail_sort_deck(deck_node_t **deck);
+int get_word(char word);
 #endif

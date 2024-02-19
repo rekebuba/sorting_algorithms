@@ -1,2 +1,1 @@
-
- * Return: the index of the pivot
+t
