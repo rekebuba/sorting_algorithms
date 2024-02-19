@@ -12,6 +12,8 @@ void sort_deck(deck_node_t **deck)
 	deck_node_t *curent;
 	int swapped;
 
+	if (*deck == NULL || (*deck)->next == NULL)
+		return;
 	do {
 		swapped = 0;
 		for (curent = *deck; curent->next; curent = curent->next)
