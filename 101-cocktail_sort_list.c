@@ -26,6 +26,8 @@ void cocktail_sort_list(listint_t **list)
 			}
 			if (curent == right)
 				right = right->next;
+			if (curent->next == left)
+				left = left->prev;
 		}
 
 		for (curent = curent->prev; curent->prev
