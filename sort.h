@@ -45,7 +45,8 @@ int find_pivot(int *array, size_t size, int low, int hig);
 void recursion(int *array, size_t size, int low, int hig);
 int max_num(int *array, size_t size);
 void divide_list(int *sub_array, int *buff, size_t left, size_t right);
-void merge_list(int *sub_array, int *buff, size_t left, size_t mid, size_t right);
+void merge_list(int *sub_array, int *buff, size_t left, size_t mid,
+		size_t right);
 void radix_unpack(int *array, int **buffer);
 void free_mem(int **buffer);
 int **allocate_mem(size_t size);
