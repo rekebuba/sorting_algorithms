@@ -18,7 +18,7 @@ void quick_sort(int *array, size_t size)
 /**
  * recursion - a recursion function that sorts
  * an array by using divide a concur method
- * 
+ *
  * @array: the given array to sort
  * @size: the size of the array
  * @low: the lowest index to the array
@@ -28,6 +28,7 @@ void quick_sort(int *array, size_t size)
 void recursion(int *array, size_t size, int low, int hig)
 {
 	int pivot_index;
+
 	if (low > hig)
 		return;
 	pivot_index = find_pivot(array, size, low, hig);
@@ -47,27 +48,28 @@ void recursion(int *array, size_t size, int low, int hig)
  */
 int find_pivot(int *array, size_t size, int left, int right)
 {
-    int *pivot = array + right;
-    int start = left;
-    int pivot_index = left;
-    for (start = left; start < right; start++)
-    {
-        if (array[start] < *pivot)
-        {
-            if (pivot_index < start)
-            {
-                swap(array + start, array + pivot_index);
-                print_array(array, size);
-            }
-            pivot_index++;
-        }
-    }
-    if (array[pivot_index] > *pivot)
-    {
-        swap(array + pivot_index, pivot);
-        print_array(array, size);
-    }
-    return (pivot_index);
+	int *pivot = array + right;
+	int start = left;
+	int pivot_index = left;
+
+	for (start = left; start < right; start++)
+	{
+		if (array[start] < *pivot)
+		{
+			if (pivot_index < start)
+			{
+				swap(array + start, array + pivot_index);
+				print_array(array, size);
+			}
+			pivot_index++;
+		}
+	}
+	if (array[pivot_index] > *pivot)
+	{
+		swap(array + pivot_index, pivot);
+		print_array(array, size);
+	}
+	return (pivot_index);
 }
 
 /**
