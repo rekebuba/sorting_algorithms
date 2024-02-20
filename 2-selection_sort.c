@@ -36,6 +36,13 @@ void selection_sort(int *array, size_t size)
 	}
 }
 
+/**
+ * swap - swap the given values
+ *
+ * @a: a pointer to integer
+ * @b: a pointer to integer
+ * Return: void
+ */
 void swap(int *a, int *b)
 {
 	int temp = *a;
