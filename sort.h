@@ -52,4 +52,4 @@ int **allocate_mem(size_t size);
 void quick_sort_rec(int *array, size_t size, size_t left, size_t right);
 int pivot(int *array, size_t size, size_t left, size_t right);
 
-#endif
+#endif /* SORTING_ALGORITHMS */
