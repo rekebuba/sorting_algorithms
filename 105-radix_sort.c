@@ -9,22 +9,23 @@
  */
 int len_digit(int *array, ssize_t size)
 {
-    int max = 0, temp, i;
-    int count = 0;
-    for (i = 0; i < size; i++)
-    {
-        if (max < array[i])
-        {
-            max = array[i];
-        }
-    }
-    temp = max;
-    while (temp > 0)
-    {
-        temp /= 10;
-        count++;
-    }
-    return (count);
+	int max = 0, temp, i;
+	int count = 0;
+
+	for (i = 0; i < size; i++)
+	{
+		if (max < array[i])
+		{
+			max = array[i];
+		}
+	}
+	temp = max;
+	while (temp > 0)
+	{
+		temp /= 10;
+		count++;
+	}
+	return (count);
 }
 
 /**
@@ -35,21 +36,22 @@ int len_digit(int *array, ssize_t size)
  */
 int **allocate_mem(size_t size)
 {
-    int **buffer = malloc(HEAP_SIZE * sizeof(int *));
-    size_t i, j;
-    for (i = 0; i < HEAP_SIZE; i++)
-    {
-        buffer[i] = malloc(size * sizeof(int));
-    }
+	int **buffer = malloc(HEAP_SIZE * sizeof(int *));
+	size_t i, j;
 
-    for (i = 0; i < HEAP_SIZE; i++)
-    {
-        for (j = 0; j < size; j++)
-        {
-            buffer[i][j] = -1;
-        }
-    }
-    return (buffer);
+	for (i = 0; i < HEAP_SIZE; i++)
+	{
+		buffer[i] = malloc(size * sizeof(int));
+	}
+
+	for (i = 0; i < HEAP_SIZE; i++)
+	{
+		for (j = 0; j < size; j++)
+		{
+			buffer[i][j] = -1;
+		}
+	}
+	return (buffer);
 }
 
 /**
@@ -62,36 +64,36 @@ int **allocate_mem(size_t size)
  */
 void radix_sort(int *array, size_t size)
 {
-    int divisor = 1;
-    size_t i;
-    int value, digit_index, index;
+	int divisor = 1;
+	size_t i;
+	int value, digit_index, index;
 
-    int digit = len_digit(array, size);
-    int **buffer = allocate_mem(size);
+	int digit = len_digit(array, size);
+	int **buffer = allocate_mem(size);
 
-    while (digit > 0)
-    {
-        index = 0;
-        for (i = 0; i < size; i++)
-        {
-            value = array[i] / divisor;
-            digit_index = value % 10;
-            if (buffer[digit_index][index] != -1)
-            {
-                while (buffer[digit_index][index] != -1)
-                    index++;
-                buffer[digit_index][index] = array[i];
-                index = 0;
-            }
-            else
-                buffer[digit_index][index] = array[i];
-        }
-        radix_unpack(array, buffer);
-        print_array(array, size);
-        divisor *= 10;
-        digit--;
-    }
-    free_mem(buffer);
+	while (digit > 0)
+	{
+		index = 0;
+		for (i = 0; i < size; i++)
+		{
+			value = array[i] / divisor;
+			digit_index = value % 10;
+			if (buffer[digit_index][index] != -1)
+			{
+				while (buffer[digit_index][index] != -1)
+					index++;
+				buffer[digit_index][index] = array[i];
+				index = 0;
+			}
+			else
+				buffer[digit_index][index] = array[i];
+		}
+		radix_unpack(array, buffer);
+		print_array(array, size);
+		divisor *= 10;
+		digit--;
+	}
+	free_mem(buffer);
 }
 
 /**
@@ -103,20 +105,21 @@ void radix_sort(int *array, size_t size)
  */
 void radix_unpack(int *array, int **buffer)
 {
-    int index1 = 0, index2;
-    size_t i = 0;
-    while (index1 < HEAP_SIZE)
-    {
-        index2 = 0;
-        while (buffer[index1][index2] != -1)
-        {
-            array[i] = buffer[index1][index2];
-            buffer[index1][index2] = -1;
-            index2++;
-            i++;
-        }
-        index1++;
-    }
+	int index1 = 0, index2;
+	size_t i = 0;
+
+	while (index1 < HEAP_SIZE)
+	{
+		index2 = 0;
+		while (buffer[index1][index2] != -1)
+		{
+			array[i] = buffer[index1][index2];
+			buffer[index1][index2] = -1;
+			index2++;
+			i++;
+		}
+		index1++;
+	}
 }
 
 /**
@@ -127,10 +130,11 @@ void radix_unpack(int *array, int **buffer)
  */
 void free_mem(int **buffer)
 {
-    int i;
-    for (i = 0; i < HEAP_SIZE; i++)
-    {
-        free(buffer[i]);
-    }
-    free(buffer);
+	int i;
+
+	for (i = 0; i < HEAP_SIZE; i++)
+	{
+		free(buffer[i]);
+	}
+	free(buffer);
 }
