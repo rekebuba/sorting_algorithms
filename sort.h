@@ -1,13 +1,13 @@
 #ifndef SORTING_ALGORITHMS
 #define SORTING_ALGORITHMS
 
-
-#define HEAP_SIZE 10
-
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
 
 
+#define HEAP_SIZE 10
 
 /**
  * struct listint_s - Doubly linked list node
