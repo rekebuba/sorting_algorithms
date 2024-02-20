@@ -14,7 +14,7 @@ void counting_sort(int *array, size_t size)
 	size_t i;
 	int j, max;
 
-	if (!array)
+	if (!array || size < 2)
 		return;
 
 	result = malloc(sizeof(int) * size);
@@ -35,13 +35,7 @@ void counting_sort(int *array, size_t size)
 	for (j = 1; j <= max; j++)
 		key[j] += key[j - 1];
 
-	for (j = 0; j <= max; j++)
-	{
-		printf("%d", key[j]);
-		if (j != max)
-			printf(", ");
-	}
-	printf("\n");
+	print_array(key, max + 1);
 
 	for (j = size - 1; j >= 0; j--)
 		result[--key[array[j]]] = array[j];

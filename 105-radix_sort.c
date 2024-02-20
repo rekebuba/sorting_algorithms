@@ -86,7 +86,8 @@ void radix_sort(int *array, size_t size)
             else
                 buffer[digit_index][index] = array[i];
         }
-        radix_unpack(array, size, buffer);
+        radix_unpack(array, buffer);
+        print_array(array, size);
         divisor *= 10;
         digit--;
     }
@@ -97,11 +98,10 @@ void radix_sort(int *array, size_t size)
  * radix_unpack - unpack the values to the original array
  *
  * @array: the given array
- * @size: the size of the array
  * @buffer: the 2D array that holds the values
  * Return: Void
  */
-void radix_unpack(int *array, size_t size, int **buffer)
+void radix_unpack(int *array, int **buffer)
 {
     int index1 = 0, index2;
     size_t i = 0;
@@ -111,11 +111,6 @@ void radix_unpack(int *array, size_t size, int **buffer)
         while (buffer[index1][index2] != -1)
         {
             array[i] = buffer[index1][index2];
-            printf("%d", array[i]);
-            if (i != size - 1)
-                printf(", ");
-            else
-                printf("\n");
             buffer[index1][index2] = -1;
             index2++;
             i++;

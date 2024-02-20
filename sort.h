@@ -46,7 +46,7 @@ void recursion(int *array, size_t size, int low, int hig);
 int max_num(int *array, size_t size);
 void divide_list(int *array, size_t lower, size_t upper);
 void merge_list(int *array, size_t lower, size_t mid, size_t upper);
-void radix_unpack(int *array, size_t size, int **buffer);
+void radix_unpack(int *array, int **buffer);
 void free_mem(int **buffer);
 int **allocate_mem(size_t size);
 void quick_sort_rec(int *array, size_t size, size_t left, size_t right);
