@@ -11,6 +11,7 @@
 void bubble_sort(int *array, size_t size)
 {
 	size_t i, j;
+
 	for (i = 0; i < size - 1; i++)
 	{
 		for (j = 0; j < size - 1; j++)
@@ -24,6 +25,13 @@ void bubble_sort(int *array, size_t size)
 	}
 }
 
+/**
+ * swap - swap the given values
+ *
+ * @a: a pointer to integer
+ * @b: a pointer to integer
+ * Return: void
+ */
 void swap(int *a, int *b)
 {
 	int temp = *a;
